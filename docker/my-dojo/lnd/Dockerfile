@@ -1,6 +1,6 @@
-FROM golang:1.13-alpine as builder
+FROM    golang:1.13-alpine as builder
 
-LABEL maintainer="Olaoluwa Osuntokun <laolu@lightning.engineering>"
+LABEL   maintainer="Olaoluwa Osuntokun <laolu@lightning.engineering>"
 
 ENV     APP_DIR             /go/src/github.com/lightningnetwork/lnd
 ENV     APP_URL             https://github.com/lightningnetwork/lnd/archive
