@@ -7,6 +7,7 @@ cd /home/user
 echo "cookie = \"$BITCOIND_RPC_USER:$BITCOIND_RPC_PASSWORD\"" >  /home/user/electrs.toml
 
 electrs -vvvv --timestamp --db-dir /home/user/db \
+        --jsonrpc-import                         \
         --daemon-rpc-addr=bitcoind:28256         \
         --electrum-rpc-addr=172.28.1.10:50001    \
         ${ELECTRS_OPTIONS}

@@ -10,5 +10,6 @@ ELECTRS_INSTALL=on
 
 # Additional parameters to run electrs command.  Useful if you need to run need
 # to run on platform with limited resources
-#ELECTRS_OPTIONS="--index-batch-size=10"  # Recommended setting for Raspberry Pi
+# Recommended setting for Raspberry Pi:  
+ELECTRS_OPTIONS=--index-batch-size=10 
 
