@@ -40,8 +40,10 @@ select_yaml_files() {
     yamlFiles="$yamlFiles -f $DIR/overrides/explorer.install.yaml"
   fi
 
-  #if [ "$ELECTRS_INSTALL" == "on" ]; then
-  #  yamlFiles="$yamlFiles -f $DIR/overrides/electrs.install.yaml"
+  if [ "$ELECTRS_INSTALL" == "on" ]; then
+    yamlFiles="$yamlFiles -f $DIR/overrides/electrs.install.yaml"
+  fi
+
   if [ "$INDEXER_INSTALL" == "on" ]; then
     yamlFiles="$yamlFiles -f $DIR/overrides/indexer.install.yaml"
   fi
@@ -397,8 +399,9 @@ logs() {
       if [ "$EXPLORER_INSTALL" == "on" ]; then
         services="$services explorer"
       fi
-      #if [ "$ELECTRS_INSTALL" == "on" ]; then
-      #  services="$services electrs"
+      if [ "$ELECTRS_INSTALL" == "on" ]; then
+        services="$services electrs"
+      fi
       if [ "$INDEXER_INSTALL" == "on" ]; then
         services="$services indexer"
       fi
