@@ -19,6 +19,7 @@ source_file "$DIR/conf/docker-bitcoind.conf"
 source_file "$DIR/conf/docker-explorer.conf"
 source_file "$DIR/conf/docker-electrs.conf"
 source_file "$DIR/conf/docker-lnd.conf"
+source_file "$DIR/conf/docker-rtl.conf"
 source_file "$DIR/conf/docker-common.conf"
 source_file "$DIR/.env"
 
@@ -52,6 +53,10 @@ select_yaml_files() {
 
   if [ "$LND_INSTALL" == "on" ]; then
     yamlFiles="$yamlFiles -f $DIR/overrides/lnd.install.yaml"
+  fi
+
+  if [ "$RTL_INSTALL" == "on" ]; then
+    yamlFiles="$yamlFiles -f $DIR/overrides/rtl.install.yaml"
   fi
 
   # Return yamlFiles

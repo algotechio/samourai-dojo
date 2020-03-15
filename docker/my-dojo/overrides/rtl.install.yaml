@@ -1,0 +1,20 @@
+version: "3.2"
+
+services:
+  rtl:
+    container_name: dojo_rtl
+    image: shahanafarooqui/rtl:0.6.4
+    restart: unless-stopped
+    depends_on:
+      - lnd
+    volumes:
+      - lnd_shared:/shared:ro
+    ports:
+      - ${RTL_PORT}:${RTL_PORT}
+    environment:
+      PORT: ${RTL_PORT}
+      MACAROON_PATH: /shared
+      LN_SERVER_URL: https://${LND_HOST}:${LND_REST_PORT}/v1
+      CONFIG_PATH: ''
+      RTL_PASS: ${RTL_PASS}
+
