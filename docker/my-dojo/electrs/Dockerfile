@@ -39,6 +39,8 @@ USER    root
 RUN     chown user:nogroup "$APP_DIR/restart.sh" && \
         chmod u+x "$APP_DIR/restart.sh" 
 
+USER    user
+
 # Electrum RPC
 EXPOSE 50001
 

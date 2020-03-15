@@ -18,8 +18,10 @@ source_file "$DIR/conf/docker-indexer.conf"
 source_file "$DIR/conf/docker-bitcoind.conf"
 source_file "$DIR/conf/docker-explorer.conf"
 source_file "$DIR/conf/docker-electrs.conf"
+source_file "$DIR/conf/docker-lnd.conf"
 source_file "$DIR/conf/docker-common.conf"
 source_file "$DIR/.env"
+
 
 # Export some variables for compose
 export BITCOIND_RPC_EXTERNAL_IP
@@ -40,12 +42,16 @@ select_yaml_files() {
     yamlFiles="$yamlFiles -f $DIR/overrides/explorer.install.yaml"
   fi
 
+  if [ "$INDEXER_INSTALL" == "on" ]; then
+    yamlFiles="$yamlFiles -f $DIR/overrides/indexer.install.yaml"
+  fi
+
   if [ "$ELECTRS_INSTALL" == "on" ]; then
     yamlFiles="$yamlFiles -f $DIR/overrides/electrs.install.yaml"
   fi
 
-  if [ "$INDEXER_INSTALL" == "on" ]; then
-    yamlFiles="$yamlFiles -f $DIR/overrides/indexer.install.yaml"
+  if [ "$LND_INSTALL" == "on" ]; then
+    yamlFiles="$yamlFiles -f $DIR/overrides/lnd.install.yaml"
   fi
 
   # Return yamlFiles
