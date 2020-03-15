@@ -9,6 +9,8 @@ docker/my-dojo/conf/docker-explorer.conf
 docker/my-dojo/conf/docker-electrs.conf
 docker/my-dojo/conf/docker-lnd.conf
 docker/my-dojo/conf/docker-common.conf
+docker/my-dojo/conf/docker-indexer.conf
+docker/my-dojo/nginx/dojo-explorer.conf
 docker/my-dojo/nginx/dojo.conf
 keys/index.js
 keys/sslcert/

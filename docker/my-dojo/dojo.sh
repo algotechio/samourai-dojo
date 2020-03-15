@@ -393,8 +393,8 @@ logs() {
     explorer )
       logs_explorer $1 $2 $3
       ;;
-    electrs )
-      docker container logs electrs --tail=50 --follow  # TODO: fix to use docker-compose for consistency
+    electrs | lnd )
+      docker container logs $1 --tail=50 --follow  # TODO: fix to use docker-compose for consistency
       ;;
     * )
       yamlFiles=$(select_yaml_files)
@@ -405,13 +405,16 @@ logs() {
       if [ "$EXPLORER_INSTALL" == "on" ]; then
         services="$services explorer"
       fi
-      if [ "$ELECTRS_INSTALL" == "on" ]; then
-        services="$services electrs"
-      fi
       if [ "$INDEXER_INSTALL" == "on" ]; then
         services="$services indexer"
       fi
-      eval "docker-compose $yamlFiles logs --tail=0 --follow $services"
+      if [ "$ELECTRS_INSTALL" == "on" ]; then
+        services="$services electrs"
+      fi
+      if [ "LND_INSTALL" == "on" ]; then
+        services="$services lnd"
+      fi
+      eval "docker-compose $yamlFiles logs --tail=50 --follow $services"
       ;;
   esac
 }
@@ -448,6 +451,7 @@ help() {
   echo "                                  dojo.sh logs pushtx-orchest : display the logs of the pushTx Orchestrator (nodejs)"
   echo "                                  dojo.sh logs explorer       : display the logs of the Explorer"
   echo "                                  dojo.sh logs electrs        : display the logs of the electrs"
+  echo "                                  dojo.sh logs lnd            : display the logs of the lnd"
   echo " "
   echo "                                Available options (only available for api, tracker, pushtx, pushtx-orchest and explorer modules):"
   echo "                                  -d [VALUE]                  : select the type of log to be displayed."
